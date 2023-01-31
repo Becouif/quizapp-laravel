@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +19,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::group(['quiz'=> 'admin'], function(){
-
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['prefix'=>'quiz'], function(){
+    Route::get('/',[QuizController::class, 'index'])->name('quiz.index');
+    Route::get('/create',[QuizController::class, 'create']);
+   Route::post('/store',[QuizController::class, 'store'])->name('quiz.store');
+   Route::get('/{id}/edit',[QuizController::class, 'edit'])->name('quiz.edit');
+   Route::put('/{id}/update', [QuizController::class, 'update'])->name('quiz.update');
+   Route::delete('/{id}/delete', [QuizController::class, 'destroy'])->name('quiz.delete');
+   
 });

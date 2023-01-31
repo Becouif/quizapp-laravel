@@ -1,3 +1,6 @@
+
+<!-- *** NOTE: sidebar was not copied right, make sure to do it right **** -->
+
 </div>
     <!-- /navbar -->
     <div class="wrapper">
@@ -43,5 +46,3 @@
                             <li><a href="#"><i class="menu-icon icon-signout"></i>Logout </a></li>
                         </ul>
                     </div>
-                    <!--/.sidebar-->
-                </div>

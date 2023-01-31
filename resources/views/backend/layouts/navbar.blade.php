@@ -6,7 +6,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Edmin</title>
+        <title>Quiz App</title>
         <link type="text/css" href="{{asset('css/code/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
         <link type="text/css" href="{{asset('css/code/bootstrap/css/bootstrap-responsive.min.css')}}" rel="stylesheet">
         <link type="text/css" href="{{asset('css/code/css/theme.css')}}" rel="stylesheet">
@@ -16,11 +16,12 @@
     </head>
 
 <body>
+    <!-- navbar include  -->
     <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
                 <a class="btn btn-navbar" data-toggle="collapse" data-target=".navbar-inverse-collapse">
-                    <i class="icon-reorder shaded"></i></a><a class="brand" href="index.html">Edmin </a>
+                    <i class="icon-reorder shaded"></i></a><a class="brand" href="/">Quiz App </a>
                 <div class="nav-collapse collapse navbar-inverse-collapse">
                     <ul class="nav nav-icons">
                         <li class="active"><a href="#"><i class="icon-envelope"></i></a></li>
@@ -61,4 +62,4 @@
                 <!-- /.nav-collapse -->
             </div>
         </div>
-        <!-- /navbar-inner -->
+    </div>    <!-- /navbar-inner -->
