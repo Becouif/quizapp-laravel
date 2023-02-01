@@ -1,11 +1,9 @@
-/*
 
-Edming Admin Template
-EGrappler.com
-All Rights Reserved.
-
-*/
-
+div.position-style{
+	position: relative;
+	right:5;
+}
+/* end of my css */
 body {
 	font-size: 13px;
 	font-family: 'Open Sans', Arial, sans-serif;
