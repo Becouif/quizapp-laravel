@@ -7,7 +7,7 @@
 
 						<div class="module">
 							<div class="module-head">
-								<h3>Tables</h3>
+								<h3>All Quiz</h3>
 							</div>
 							<div class="module-body">
 								<table class="table table-striped table-bordered table-condensed">

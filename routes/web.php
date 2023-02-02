@@ -34,6 +34,7 @@ Route::group(['prefix'=>'quiz'], function(){
 
 // route for Question
 Route::group(['prefix'=>'question'], function(){
+    Route::get('/',[QuestionController::class, 'index'])->name('question.index');
     Route::get('/create',[QuestionController::class, 'create'])->name('question.create');
     Route::post('/store',[QuestionController::class, 'store'])->name('question.store');
 });
