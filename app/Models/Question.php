@@ -27,4 +27,18 @@ class Question extends Model
     public function getQuestions(){
         return Question::orderBy('created_at', $this->order)->with('quiz')->paginate($this->limit);
     }
+    public function getQuestionById($id){
+        return Question::find($id);
+
+    }
+    public function updateQuestion($id,$data){
+        $question = Question::find($id);
+        $question->question = $data['question'];
+        $question->quiz_id = $data['quiz'];
+        $question->save();
+        return $question;
+    }
+    public function deleteQuestion($id){
+        return Question::find($id)->delete($id);
+    }
 }

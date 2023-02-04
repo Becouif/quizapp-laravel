@@ -37,4 +37,8 @@ Route::group(['prefix'=>'question'], function(){
     Route::get('/',[QuestionController::class, 'index'])->name('question.index');
     Route::get('/create',[QuestionController::class, 'create'])->name('question.create');
     Route::post('/store',[QuestionController::class, 'store'])->name('question.store');
+    Route::get('/{id}/view',[QuestionController::class, 'show'])->name('question.show');
+    Route::get('/{id}/edit',[QuestionController::class, 'edit'])->name('question.edit');
+    Route::put('/{id}/update',[QuestionController::class, 'update'])->name('question.update');
+    Route::delete('/{id}/delete',[QuestionController::class, 'destroy'])->name('question.delete');
 });
