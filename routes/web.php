@@ -29,7 +29,7 @@ Route::group(['prefix'=>'quiz'], function(){
    Route::get('/{id}/edit',[QuizController::class, 'edit'])->name('quiz.edit');
    Route::put('/{id}/update', [QuizController::class, 'update'])->name('quiz.update');
    Route::delete('/{id}/delete', [QuizController::class, 'destroy'])->name('quiz.delete');
-   
+   Route::get('/{id}/view', [QuizController::class, 'show'])->name('quiz.view');
 });
 
 // route for Question

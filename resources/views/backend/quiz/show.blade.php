@@ -1,4 +1,7 @@
-
+@extends('backend.layouts.master')
+@section('title', 'show Quiz')
+@section('content')
+  
                             <!--/.sidebar-->
                             </div>
                         <!--/.span3-->
@@ -34,3 +37,7 @@
                 <!--/.container-->
   </div>
             <!--/.wrapper-->
+
+
+
+@endsection

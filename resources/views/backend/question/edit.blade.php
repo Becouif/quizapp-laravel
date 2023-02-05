@@ -3,9 +3,13 @@
 
       @section('content')
 
-      <div class="position-style">
-      <div class="span9">
-          <div class="content">
+      
+                            <!--/.sidebar-->
+                            </div>
+                        <!--/.span3-->
+    	<div class="span9">
+        <div class="content">
+					<div class="content">
             @if (Session::has('success'))
             <div class="alert alert-success">{{Session::get('success')}}</div>
             @endif
@@ -77,11 +81,7 @@
                   </div>
                   
                 </div>
-                    
-
-                
-                  
-      
+       
                   <div class="control-group">
                   <div class="controls">
                       <button type="submit" class="btn btn-success">Update</button>
@@ -94,8 +94,15 @@
 
           </div>
 
+                                <!--/.module-->
         </div>
+                            <!--/.content-->
       </div>
-       
+                        <!--/.span9-->
+    </div>
+    </div>
+                <!--/.container-->
+  </div>
+            <!--/.wrapper-->
 
       @endsection

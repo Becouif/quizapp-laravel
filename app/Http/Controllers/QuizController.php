@@ -53,9 +53,11 @@ class QuizController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
+    public function show($id)
     {
         //
+        $quiz = (new Quiz)->getQuizById($id);
+        return view('backend.quiz.show', compact('quiz'));
     }
 
     /**
