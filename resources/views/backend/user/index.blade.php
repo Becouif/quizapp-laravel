@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-    @section('title', 'list quiz')
+    @section('title', 'show user')
 
     @section('content')
                             <!--/.sidebar-->
@@ -35,9 +35,9 @@
 																	<td>{{$quiz->name}}</td>
 																	<td>{{$quiz->description}}</td>
 																	<td>{{$quiz->minutes}}</td>
-																	<td><a href="{{route('quiz.edit', [$quiz->id])}}" class="btn btn-success">Edit</a></td>
+																	<td><a href="{{route('user.edit', [$user->id])}}" class="btn btn-success">Edit</a></td>
 																	<td>
-																		<form id="delete-form{{$quiz->id}}" action="{{route('quiz.delete',[$quiz->id])}}" method="POST">@csrf
+																		<form id="delete-form{{$user->id}}" action="{{route('quiz.delete',[$quiz->id])}}" method="POST">@csrf
 																			{{ method_field('DELETE') }}	
 																		</form>
 																	<!-- anchor tag for warning pop up  -->

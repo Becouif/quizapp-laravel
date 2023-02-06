@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Quiz;
+use App\Models\User;
 use Illuminate\Http\Request;
 
-class QuizController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class QuizController extends Controller
     public function index()
     {
         //
-        $quizzes = (new Quiz)->allQuiz();
-        return view('backend.quiz.index', compact('quizzes'));
+        $users = (new User)->allUsers();
+        return view('backend.user.index',compact('users'));
     }
 
     /**
@@ -25,8 +25,7 @@ class QuizController extends Controller
      */
     public function create()
     {
-        //
-        return view('backend.quiz.create');
+        return view('backend.user.create');
     }
 
     /**
@@ -37,14 +36,12 @@ class QuizController extends Controller
      */
     public function store(Request $request)
     {
-        // $data with validateform method below
-        $data = $this->validateForm($request);
-        // storeQuiz() a method in Quiz Model
-        $quiz = (new Quiz)->storeQuiz($data);
+        // to view a request coming from the backen.user.create first 
+        // dd($request->all());
 
-
-        // 
-        return redirect()->back()->with('message', 'Quiz created successfully');
+        $this->validateUser($request);
+        (new User)->storeUser($request->all());
+        return redirect(route('user.index'))->with('message','Account sucessfully created');
     }
 
     /**
@@ -55,9 +52,7 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        // //
-        // $quiz = (new Quiz)->getQuizById($id);
-        // return view('backend.quiz.show', compact('quiz'));
+        //
     }
 
     /**
@@ -69,8 +64,6 @@ class QuizController extends Controller
     public function edit($id)
     {
         //
-        $quiz = (new Quiz)->getQuizById($id);
-        return view('backend.quiz.edit', compact('quiz'));
     }
 
     /**
@@ -83,16 +76,6 @@ class QuizController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = $this->validateForm($request);
-        $quiz = (new Quiz)->updateQuiz($data,$id);
-        return redirect(route('quiz.index'))->with('message','Quiz updated Successfully!');
-    }
-    
-    public function question($id){
-        // questions - a relationship created in Quiz Model 
-        $quizzes = Quiz::with('questions')->where('id',$id)->get();
-        return view('backend.quiz.question', compact('quizzes'));
-
     }
 
     /**
@@ -104,16 +87,13 @@ class QuizController extends Controller
     public function destroy($id)
     {
         //
-        (new Quiz)->deleteQuiz($id);
-        return redirect(route('quiz.index'))->with('message','Quiz deleted successfully!');
     }
 
-
-    public function validateForm($request){
+    public function validateUser($request){
         return $this->validate($request,[
-            'name'=> 'required|string',
-            'description'=> 'required|min:3',
-            'minutes' => 'required|integer'
+            'name'=>'required',
+            'email'=>'required|unique:users',
+            'password'=>'required|min:3',
         ]);
     }
 }

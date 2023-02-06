@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\QuestionController;
+use App\Http\controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,4 +42,11 @@ Route::group(['prefix'=>'question'], function(){
     Route::get('/{id}/edit',[QuestionController::class, 'edit'])->name('question.edit');
     Route::put('/{id}/update',[QuestionController::class, 'update'])->name('question.update');
     Route::delete('/{id}/delete',[QuestionController::class, 'destroy'])->name('question.delete');
+});
+
+// route for user controller 
+Route::group(['prefix'=>'user'], function(){
+    Route::get('/',[UserController::class, 'index'])->name('user.index');
+    Route::get('/create',[UserController::class, 'create'])->name('user.create');
+    Route::post('/store',[UserController::class, 'store'])->name('user.store');
 });

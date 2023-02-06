@@ -47,4 +47,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function storeUser($data){
+        // add info that are not comming from the form to the data
+        $data['visible_password']= $data['password'];
+        $data['is_admin']=0;
+        // finally encrypt the password coming from the form 
+        $data['password']=bcrypt($data['password']);
+        return User::create($data);
+    }
+    private $limit = 10;
+    public function allUsers(){
+        return User::latest()->paginate($this->limit);
+    }
 }
