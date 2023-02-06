@@ -11,19 +11,17 @@
                         <ul class="widget widget-menu unstyled">
                             <li class="active"><a href="{{url('/')}}"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
-                            <li><a href="{{route('quiz.create')}}"><i class="menu-icon icon-bullhorn"></i> Create Quiz </a>
+                            <li><a href="{{route('quiz.create')}}"><i class="menu-icon icon-bullhorn"></i>Create Quiz</a>
                             </li>
-                            <li><a href="{{route('quiz.index')}}"><i class="menu-icon icon-inbox"></i>View Quiz <b
-                                        class="label green pull-right">
-                                        11</b> </a></li>
+                            <li><a href="{{route('quiz.index')}}"><i class="menu-icon icon-inbox"></i>View Quiz</a></li>
                             
                         </ul>
                         <!--/.widget-nav-->
-
-
                         <ul class="widget widget-menu unstyled">
                             <li><a href="{{route('question.create')}}"><i class="menu-icon icon-bold"></i> Create Question </a></li>
                             <li><a href="{{route('question.index')}}"><i class="menu-icon icon-book"></i>View Questions </a></li>
+                        </ul>
+                        <ul class="widget widget-menu unstyled">
                             <li><a href="form.html"><i class="menu-icon icon-paste"></i>Forms </a></li>
                             <li><a href="table.html"><i class="menu-icon icon-table"></i>Tables </a></li>
                             <li><a href="charts.html"><i class="menu-icon icon-bar-chart"></i>Charts </a></li>

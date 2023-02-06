@@ -52,7 +52,7 @@
 																		</a>
 																	</td>
 																
-																	<td><a href="{{route('quiz.view',[$quiz->id])}}" class="btn btn-primary">View</a></td>
+																	<td><a href="{{route('quiz.question',[$quiz->id])}}" class="btn btn-inverse">View Questions</a></td>
 																</tr>
 																@endforeach
 																@else

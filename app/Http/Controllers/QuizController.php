@@ -55,9 +55,9 @@ class QuizController extends Controller
      */
     public function show($id)
     {
-        //
-        $quiz = (new Quiz)->getQuizById($id);
-        return view('backend.quiz.show', compact('quiz'));
+        // //
+        // $quiz = (new Quiz)->getQuizById($id);
+        // return view('backend.quiz.show', compact('quiz'));
     }
 
     /**
@@ -86,6 +86,13 @@ class QuizController extends Controller
         $data = $this->validateForm($request);
         $quiz = (new Quiz)->updateQuiz($data,$id);
         return redirect(route('quiz.index'))->with('message','Quiz updated Successfully!');
+    }
+    
+    public function question($id){
+        // questions - a relationship created in Quiz Model 
+        $quizzes = Quiz::with('questions')->where('id',$id)->get();
+        return view('backend.quiz.show', compact('quizzes'));
+
     }
 
     /**
