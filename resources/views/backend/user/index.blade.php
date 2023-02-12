@@ -1,5 +1,5 @@
 @extends('backend.layouts.master')
-    @section('title', 'show user')
+    @section('title', 'list users')
 
     @section('content')
                             <!--/.sidebar-->
@@ -9,7 +9,7 @@
                 <div class="content">
                     <div class="module">
 											<div class="module-head">
-												<h3>All Quiz</h3>
+												<h3>All Users</h3>
 											</div>
 											<div class="module-body">
 														<table class="table table-striped table-bordered table-condensed">
@@ -17,48 +17,51 @@
 																<tr>
 																	<th>reg_no</th>
 																	<th>Name</th>
-																	<th>Description</th>
-																	<th>Minutes</th>
-																	<th></th>
-																	<th></th>
+																	<th>Email</th>
+                                  <th>Password</th>
+																	<th>Occupation</th>
+																	<th>Phone</th>
+																	<th>Address</th>
 																	<th></th>
 
 																</tr>
 															</thead>
 															<tbody>
-																@if(count($quizzes)>0)
-																@foreach ($quizzes as $key=>$quiz)
+																@if(count($users)>0)
+																@foreach ($users as $key=>$user)
 																	
 																
 																<tr>
 																	<td>{{$key+1}}</td>
-																	<td>{{$quiz->name}}</td>
-																	<td>{{$quiz->description}}</td>
-																	<td>{{$quiz->minutes}}</td>
+																	<td>{{$user->name}}</td>
+																	<td>{{$user->email}}</td>
+                                  <td>{{$user->visible_password}}</td>
+																	<td>{{$user->occupation}}</td>
+                                  <td>{{$user->phone}}</td>
+                                  <td>{{$user->address}}</td>
 																	<td><a href="{{route('user.edit', [$user->id])}}" class="btn btn-success">Edit</a></td>
 																	<td>
-																		<form id="delete-form{{$user->id}}" action="{{route('quiz.delete',[$quiz->id])}}" method="POST">@csrf
+																		<form id="delete-form{{$user->id}}" action="{{route('user.delete',[$user->id])}}" method="POST">@csrf
 																			{{ method_field('DELETE') }}	
 																		</form>
 																	<!-- anchor tag for warning pop up  -->
 																		<a href="#" onclick="if(confirm('DO you want to delete?')){
 																				// prevent page from refreshing while form was clicked 
 																				event.preventDefault();
-																				document.getElementById('delete-form{{$quiz->id}}').submit()
+																				document.getElementById('delete-form{{$user->id}}').submit()
 																			} else {
 																				event.preventDefault();
 																			}">
 																			<input type="submit" value="Delete" class="btn btn-danger">
 																		</a>
 																	</td>
-																
-																	<td><a href="{{route('quiz.question',[$quiz->id])}}" class="btn btn-primary">View Questions</a></td>
 																</tr>
 																@endforeach
 																@else
 																<td>No quiz to display </td>
 																@endif
 															</tbody>
+                              {{ $users->links() }}
 														</table>
 											</div>
 										</div>

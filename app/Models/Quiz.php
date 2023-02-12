@@ -5,6 +5,7 @@ use App\Models\Quiz;
 use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\User;
 
 class Quiz extends Model
 {
@@ -12,6 +13,10 @@ class Quiz extends Model
     protected $fillable = ['name','description', 'minutes'];
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+    public function users(){
+        // quiz_user is the table name in db
+        return $this->belongsToMany(User::class,'quiz_user');
     }
     // method to store the quiz in DB 
     public function storeQuiz($data){
@@ -31,5 +36,11 @@ class Quiz extends Model
     }
     public function deleteQuiz($id){
         return Quiz::find($id)->delete($id);
+    }
+    public function assignExam($data){
+        $quizId = $data['quiz_id'];
+        $quiz = Quiz::find($quizId);
+        $userId = $data['user_id'];
+        return $quiz->users()->syncWithoutDetaching($userId);
     }
 }
