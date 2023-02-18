@@ -6,6 +6,7 @@ use App\Models\Question;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use App\Models\Result;
 
 class Quiz extends Model
 {
@@ -42,5 +43,14 @@ class Quiz extends Model
         $quiz = Quiz::find($quizId);
         $userId = $data['user_id'];
         return $quiz->users()->syncWithoutDetaching($userId);
+    }
+    public function hasQuizAttempted(){
+        $attemptQuiz = [];
+        $authUser= auth()->user()->id;
+        $user = Result::where('user_id',$authUser)->get();
+        foreach($user as $u){
+            array_push($attemptQuiz,$u->quiz_id);
+        }
+        return $attemptQuiz;
     }
 }

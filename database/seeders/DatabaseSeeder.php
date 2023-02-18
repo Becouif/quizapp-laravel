@@ -15,15 +15,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $admin = new user();
-        $admin->name = "admin";
-        $admin->email = "admin@admin.com";
-        $admin->password = bcrypt('password');
-        $admin->visible_password = "password";
+        $admin->name = "kafayat";
+        $admin->email = "kafayat@kafayat.com";
+        $admin->password = bcrypt('12345678');
+        $admin->visible_password = "12345678";
         $admin->email_verified_at = NOW();
-        $admin->occupation ="CEO";
-        $admin->address ="ukraine";
-        $admin->phone ="0731185943";
-        $admin->is_admin =1;
+        $admin->occupation ="student";
+        $admin->address ="moon";
+        $admin->phone ="012690156";
+        $admin->is_admin =0;
         $admin->save();
 
 

@@ -5,6 +5,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\isAdmin;
 use App\Http\Controllers\ExamController;
+use App\Http\Controllers\HomeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,17 +24,21 @@ Auth::routes([
     'verify'=>false,
 ]);
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-// Route for quiz 
+// Routes for user without admin privileges 
+Route::get('/home',[HomeController::class, 'index']); 
+Route::get('quiz/{quizId}',[ExamController::class, 'getQuizQuestions'])->middleware('auth');
 
+
+
+// middleware for admin 
 Route::group(['middleware'=>'isAdmin'],function(){
         
     Route::get('/', function () {
         return view('admin.index');
     });
-    Route::get('/home',function(){
-        return redirect('/');
-    }); 
+    
+
+
     Route::group(['prefix'=>'quiz'], function(){
         Route::get('/',[QuizController::class, 'index'])->name('quiz.index');
         Route::get('/create',[QuizController::class, 'create'])->name('quiz.create');
@@ -64,6 +69,8 @@ Route::group(['middleware'=>'isAdmin'],function(){
         Route::put('/{id}/update',[UserController::class, 'update'])->name('user.update');
         Route::delete('/{id}/delete',[UserController::class, 'destroy'])->name('user.delete');
     });
+
+
     Route::group(['prefix'=>'exam'],function(){
         Route::get('/assign',[ExamController::class, 'create'])->name('exam.assign.create');
         Route::post('/assign',[ExamController::class, 'assignExam'])->name('exam.assign');

@@ -5,6 +5,9 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Quiz;
 use App\Models\Result;
+use App\Models\Question;
+use App\Http\Controllers\QuestionController;
+use App\Models\Answer;
 
 class ExamController extends Controller
 {
@@ -57,6 +60,22 @@ class ExamController extends Controller
         $quiz->user()->detach($userId);
         return redirect()->back()->with('message','Quiz has be remove for this user');
     }
+
+   }
+   public function hasQuizAttempted(){
+    $attemptQuiz = [];
+    
+   }
+
+   public function getQuizQuestions(Request $request, $quizId){
+    $authUser = auth()->user()->id;
+    $quiz = Quiz::find($quizId);
+    $time = Quiz::where('id', $quizId)->value('minutes');
+    $quizQuestions = Question::where('quiz_id',$quizId)->get();
+    $answers = Answer::where('question_id',$quizId)->get();
+    $authUserHasPlayedQuiz = Result::where(['user_id'=>$authUser,'quiz_id'=>$quizId])->get();
+    return view('quiz',compact('quiz','time','quizQuestions','authUserHasPlayedQuiz','answers'));
+
 
    }
 }

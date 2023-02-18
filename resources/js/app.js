@@ -16,7 +16,9 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import QuizComponent from './components/QuizComponent.vue';
 app.component('example-component', ExampleComponent);
+app.component('quiz-component',QuizComponent);
 
 /**
  * The following block of code may be used to automatically register your
