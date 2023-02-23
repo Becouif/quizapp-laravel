@@ -68,14 +68,22 @@ class ExamController extends Controller
    }
 
    public function getQuizQuestions(Request $request, $quizId){
+    // get current log in user id 
     $authUser = auth()->user()->id;
+
     $quiz = Quiz::find($quizId);
     $time = Quiz::where('id', $quizId)->value('minutes');
-    $quizQuestions = Question::where('quiz_id',$quizId)->get();
-    $answers = Answer::where('question_id',$quizId)->get();
+    // dd($time);
+    $quizQuestions = Question::where('quiz_id',$quizId)->with('answers')->get();
     $authUserHasPlayedQuiz = Result::where(['user_id'=>$authUser,'quiz_id'=>$quizId])->get();
-    return view('quiz',compact('quiz','time','quizQuestions','authUserHasPlayedQuiz','answers'));
+    return view('quiz',compact('quiz','time','quizQuestions','authUserHasPlayedQuiz'));
+
+    // varibles in compact can be pass as props to vue component 
 
 
+   }
+   
+   public function postQuiz(Request $request){
+    
    }
 }

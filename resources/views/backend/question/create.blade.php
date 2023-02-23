@@ -54,7 +54,7 @@
                             <div class="controls">
                             <!-- looping to get 4 input space instead of pasting 4 input  -->
                             @for ($i=0;$i<4;$i++)
-                            <input type="text" name="option[]" class="span7 @error('name') is-invalid @enderror" placeholder="options{{$i+1}}"  required>
+                            <input type="text" name="option[]" class="span7 @error('name') is-invalid @enderror" placeholder="options{{$i+1}}">
                             <input type="radio" name="correct_answer" value="{{$i}}"><span>Is correct answer</span>
                             @endfor
                             

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Result;
+use App\Models\Answer;
+
 
 class Quiz extends Model
 {
@@ -14,6 +16,9 @@ class Quiz extends Model
     protected $fillable = ['name','description', 'minutes'];
     public function questions(){
         return $this->hasMany(Question::class);
+    }
+    public function answers(){
+        return $this->hasMany(Answer::class);
     }
     public function users(){
         // quiz_user is the table name in db
@@ -30,7 +35,6 @@ class Quiz extends Model
     }
     public function getQuizById($id){
         return Quiz::find($id);
-        
     }
     public function updateQuiz($data,$id){
         return Quiz::find($id)->update($data);

@@ -27,6 +27,7 @@ Auth::routes([
 // Routes for user without admin privileges 
 Route::get('/home',[HomeController::class, 'index']); 
 Route::get('quiz/{quizId}',[ExamController::class, 'getQuizQuestions'])->middleware('auth');
+Route::post('quiz/user/create',[ExamController::class, 'postQuiz'])->middleware('auth');
 
 
 

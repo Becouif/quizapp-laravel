@@ -7,7 +7,6 @@
  :quizId ="{{$quiz->id}}"
  :quiz-questions = "{{$quizQuestions}}"
  :has-quiz-played = "{{$authUserHasPlayedQuiz}}"
- :answers = "{{$answers}}"
 >
 
 </quiz-component>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+use App\Models\Quiz;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -58,6 +59,9 @@ class User extends Authenticatable
     private $limit = 10;
     public function allUsers(){
         return User::latest()->paginate($this->limit);
+    }
+    public function quiz(){
+        return $this->belongsToMany(Quiz::class);
     }
     public function findUser($id){
         return User::find($id);
