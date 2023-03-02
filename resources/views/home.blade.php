@@ -3,10 +3,14 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
+  @if(Session::has('error'))
+      <div class="'alert alert-danger">{{ Session::get('error') }}</div>
+  @endif
     <div class="col-md-8">
+    
       <div class="card">
         
-        <div class="card-header">Dashboard</div>
+        <div class="card-header">Examination</div>
         @if ($isExamAssigned)
         @foreach($quizzes as $quiz)
         <div class="card-body">
@@ -20,6 +24,7 @@
               <button class ="btn btn-success">Start Quiz</button>
             </a>
             @else
+            <a href="/result/user/{{auth()->user()->id}}/quiz/{{$quiz->id}}">View Result</a>
             <span class="float-right">Completed</span>
             @endif
           </p>
@@ -28,6 +33,17 @@
         @else
         <p>No quiz has been assigned to you.</p>
         @endif
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card">
+        <div class="card-header">Header</div>
+        <div class="card-body">
+          <p>Email:{{auth()->user()->email }}</p>
+          <p>Occupation:{{auth()->user()->occupation }}</p>
+          <p>Address:{{auth()->user()->address }}</p>
+          <p>Phone:{{auth()->user()->phone }}</p>
+        </div>
       </div>
     </div>
   </div>

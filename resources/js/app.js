@@ -16,6 +16,9 @@ import { createApp } from 'vue';
 const app = createApp({});
 
 import ExampleComponent from './components/ExampleComponent.vue';
+import moment from 'moment';
+
+
 import QuizComponent from './components/QuizComponent.vue';
 app.component('example-component', ExampleComponent);
 app.component('quiz-component',QuizComponent);

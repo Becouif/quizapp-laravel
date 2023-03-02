@@ -11,8 +11,9 @@
                         <ul class="widget widget-menu unstyled">
                             <li class="active"><a href="{{url('/')}}"><i class="menu-icon icon-dashboard"></i>Dashboard
                                 </a></li>
-                            <li><a href="{{route('quiz.create')}}"><i class="menu-icon icon-bullhorn"></i>Create Quiz</a>
+                            <li><a href="/home"><i class="menu-icon icon-bullhorn"></i>Create Quiz</a>
                             </li>
+                            
                             <li><a href="{{route('quiz.index')}}"><i class="menu-icon icon-inbox"></i>View Quiz</a></li>
                             
                         </ul>

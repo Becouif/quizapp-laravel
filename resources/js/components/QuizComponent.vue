@@ -4,10 +4,10 @@
       <div class="col-md-8">
         <div class="card">
           <div class="card-header">Online Examination 
-        
             <span class="float-right">{{ questionIndex }}/{{ questions.length }}</span>
           </div>
           <div class="card-body">
+            <span class="float-right" style="color:red;">{{ time }}</span>
             <div v-for="(question,index) in questions">
               <div v-show="index === questionIndex">
                 {{ question.question }}
@@ -30,7 +30,7 @@
               
             </div>
             <div v-if="questionIndex != questions.length">
-              <button class="btn btn-success" @click="prev">pre</button>
+              <button v-if="questionIndex=0" class="btn btn-success" @click="prev">pre</button>
               <button class="btn btn-success" @click="next">next</button>
             </div>
             <div v-else>
@@ -60,12 +60,27 @@
         questionIndex:0,
         userResponses:Array(this.quizQuestions.length).fill(false),
         currentQuestion:0,
-        currentAnswer:0
+        currentAnswer:0,
+        quizId:this.quizid,
+        clock:moment(this.times*60*1000)
         
       }
     },
     mounted() {
-          console.log('Component mounted.')
+          setInterval(()=>{
+            this.clock=moment(this.clock.substract(1,'seconds'))
+          },1000);
+    },
+    computed:{
+      time:function(){
+        let minsec = this.clock.format('mm:ss')
+        if(minsec == '00:00'){
+          alert('TimeOut!');
+          window.location.reload();
+        }
+        return minsec;
+
+      }
     },
     methods:{
       next(){
@@ -83,11 +98,21 @@
           return val===true;
         }).length
       },
+
+      // below method is connected to postQuiz in ExamController 
       postUserOption(){
         // alert('ok');
 
         // send axios post request 
-        axios.post('quiz/user/create')
+        axios.post('/quiz/user/create',{
+          answerId:this.currentAnswer,
+          questionId:this.currentQuestion,
+          quizId:this.quizId
+        }).then((response)=>{
+          console.log(response)
+        }).catch((error)=>{
+          alert("Error!");
+        })
       }
     }
   }
