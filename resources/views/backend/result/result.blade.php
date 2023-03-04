@@ -51,6 +51,46 @@
 									</tr>
 								  </tbody>
 								</table>
+<!-- another table  -->
+								<table class="table table-striped">
+								  <thead>
+									<tr>
+									  <th>#</th>
+									  <th>Question</th>
+									  <th>Answer Given</th>
+									  <th>Result</th>
+                   
+									</tr>
+								  </thead>
+								  <tbody>
+                   @foreach ($results as $key=>$result)
+									<tr>
+									  <td>{{$key+1}}</td>
+									  <td>{{$result->question->question}}</td>
+									  <td>{{ $result->answer->answer }}</td>
+										@if ($result->answer->is_correct)
+											<td>Correct</td>
+										@else
+										<td>Incorrect</td>
+										@endif
+									  
+                    
+									</tr>
+                  @endforeach 
+									<tr>
+									  <td>2</td>
+									  <td>Jacob</td>
+									  <td>Thornton</td>
+									  <td>@fat</td>
+									</tr>
+									<tr>
+									  <td>3</td>
+									  <td>Larry</td>
+									  <td>the Bird</td>
+									  <td>@twitter</td>
+									</tr>
+								  </tbody>
+								</table>
 
                 </div>
                             <!--/.content-->
