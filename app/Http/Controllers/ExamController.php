@@ -118,15 +118,19 @@ class ExamController extends Controller
    public function userQuizResult($userId,$quizId){
     $results = Result::where('user_id',$userId)->where('quiz_id',$quizId)->get();
     $totalQuestions = Question::where('quiz_id',$quizId)->count();
-    $attemptQuestion = Result::where('quiz_id',$quizId)->where('user_id',$user_id)->count();
+    $attemptQuestion = Result::where('quiz_id',$quizId)->where('user_id',$userId)->count();
     $quiz = Quiz::where('id',$quizId)->get();
     $ans = [];
     foreach($results as $answer){
         array_push($ans,$answer->answer_id);
     }
-    $userCorrectednaswer = Answer::whereIn('id',$ans)->where('is_correct',1)->count();
-    $userwrongAnswer = $totalQuestions-$userCorrectednaswer;
-    $percentage = ($userCorrectednaswer/$totalQuestions)*100;
-    return view('backend.result.result',compact('results','totalQuestions','attemptQuestion','userCorrectedAnswer','userWrongAnswer','percentage'));
+    $userCorrectedAnswer = Answer::whereIn('id',$ans)->where('is_correct',1)->count();
+    $userWrongAnswer = $totalQuestions-$userCorrectedAnswer;
+    if($attemptQuestion){
+    $percentage = ($userCorrectedAnswer/$totalQuestions)*100;
+    } else {
+        $percentage = 0;
+    }
+    return view('backend.result.result',compact('results','totalQuestions','attemptQuestion','userCorrectedAnswer','userWrongAnswer','percentage','quiz'));
    }
 }

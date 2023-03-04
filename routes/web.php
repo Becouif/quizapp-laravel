@@ -43,9 +43,9 @@ Route::group(['middleware'=>'isAdmin'],function(){
 
 
     Route::group(['prefix'=>'quiz'], function(){
-        Route::get('/create',[QuizController::class, 'createQuiz'])->name('quiz.create');
+        
         Route::get('/',[QuizController::class, 'index'])->name('quiz.index');
-
+        Route::get('/create',[QuizController::class, 'create'])->name('quiz.create');
         Route::post('/store',[QuizController::class, 'store'])->name('quiz.store');
         Route::get('/{id}/edit',[QuizController::class, 'edit'])->name('quiz.edit');
         Route::put('/{id}/update', [QuizController::class, 'update'])->name('quiz.update');
@@ -83,8 +83,8 @@ Route::group(['middleware'=>'isAdmin'],function(){
     });
 
    
-    Route::get('result',[ExamController::class, 'result']);
-    Route::get('result/{userId}/{quizId}',[ExamController::class, 'UserQuizResult']);
+    Route::get('result',[ExamController::class, 'result'])->name('result');
+    Route::get('result/{userId}/{quizId}',[ExamController::class, 'UserQuizResult'])->name('result.view.quiz');
    
 });
 

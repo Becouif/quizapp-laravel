@@ -33,7 +33,7 @@
 																
 																	<td><a href="{{route('quiz.question',[$quiz->id])}}" class="btn btn-success">View Questions</a></td>
 																	<td>
-																		<a href="">
+																		<a href="{{route('result.view.quiz',[$user->id,$quiz->id])}}">
                                     <button class="btn btn-primary" type="submit">View Result</button>
                                     </a>
 																		
